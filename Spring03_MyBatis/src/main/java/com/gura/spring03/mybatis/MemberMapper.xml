@@ -30,4 +30,5 @@
 		SET name=#{name }, addr=#{addr }
 		WHERE num=#{num }
 	</update>
+	
 </mapper>
