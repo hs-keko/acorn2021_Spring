@@ -12,7 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gura.spring03.member.dao.MemberDao;
 import com.gura.spring03.member.dto.MemberDto;
-
+/*
+ *	[ 컨트롤러에서 하는 작업 ]
+ * 	1. 전송된 파라미터 추출 가능
+ * 	2. 특정 요청이 왔을 때 서비스를 이용해서 비즈니스 로직을 처리하고 forward, 혹은 redirect 이동한다.
+ * 	3. HttpServletRequest, HttpServletResponse, HttpSession, ModelAndView 등의
+ * 		객체가 필요하면 메소드의 인자로 전달 받는다.
+ */
 @Controller
 public class MemberController{
 	/*
