@@ -14,18 +14,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gura.spring03.member.dto.MemberDto;
 import com.gura.spring03.todo.dao.TodoDao;
 import com.gura.spring03.todo.dto.TodoDto;
+import com.gura.spring03.todo.service.TodoService;
 
 @Controller
 public class TodoController {
 	
 	@Autowired
-	private TodoDao dao;
+	private TodoService service;
 	
 	//할 일 수정 요청 처리
 	@RequestMapping("/todo/update")
 	public ModelAndView update(TodoDto dto, ModelAndView mView) {
 		//할 일 정보를 수정하고
-		dao.update(dto);
+		service.updateTodo(dto);
 		
 		//ModelAndView 에 msg 라는 키값으로 메세지를 담고
 		mView.addObject("msg", dto.getNum()+"번 할일 정보를 수정했습니다.");
@@ -38,10 +39,8 @@ public class TodoController {
 	//할 일 수정 폼 요청 처리
 	@RequestMapping("/todo/updateform")
 	public ModelAndView updateform(@RequestParam int num, ModelAndView mView) {
-		//할 일 하나의 정보를 얻어와서
-		TodoDto dto=dao.getData(num);
-		//ModelAndView 객체에 dto 라는 키값으로 담고
-		mView.addObject("dto",dto);
+		//TodoService 를 이용해서 ModelAndView 객체에 할 일의 정보가 담기게 한다.
+		service.getTodo(num, mView);
 		//view  page 정보도 담고
 		mView.setViewName("todo/updateform");
 		//ModelAndView 객체를 리턴해 준다.
@@ -53,7 +52,7 @@ public class TodoController {
 	public String delete(@RequestParam int num) {
 		
 		//할 일 정보 삭제하고
-		dao.delete(num);
+		service.deleteTodo(num);
 		//리다일렉트 이동
 		return "redirect:/todo/list.do";
 	}
@@ -62,7 +61,7 @@ public class TodoController {
 	@RequestMapping("/todo/insert")
 	public ModelAndView insert(TodoDto dto, ModelAndView mView) {
 		// 폼 전송된 파라미터가 TodoDto 객체에 담겨서 전달된다.
-		dao.insert(dto);
+		service.addTodo(dto);
 		
 		// ModelAndView 객체에 msg 라는 키값으로 문자열을 담고
 		mView.addObject("msg", "할 일의 정보를 추가 했습니다.");
@@ -80,14 +79,12 @@ public class TodoController {
 	}
 	
 	@RequestMapping("/todo/list")
-	public String list(HttpServletRequest request) {
-		// 할 일 목록은 TodoDaoImpl 객체를 이용해서 얻어와서 request 담아 준다.
-		
-		List<TodoDto> list=dao.getList();
-		
-		request.setAttribute("list", list);
-		
-		//	/WEB-INF/views/todo/list.jsp 페이지로 forward 이동해서 응답하기
-		return "todo/list";
+	public ModelAndView list(ModelAndView mView) {
+		//TodoService 에 ModelAndView 객체의 참조값을 전달해서 할 일 목록이 담기게 한다.
+		service.getListTodo(mView);
+		//ModelAndView 객체에 view page 의 정보를 담고
+		mView.setViewName("todo/list");
+		//리턴해준다.
+		return mView;
 	}
 }
