@@ -18,6 +18,7 @@
 		<c:otherwise>
 			<p>
 				<strong>${sessionScope.id }</strong> 로그인중...
+				<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃</a>
 			</p>
 		</c:otherwise>
 	</c:choose>
