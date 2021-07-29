@@ -21,6 +21,12 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
+	@RequestMapping("/users/pwd_updateform")
+	public String pwdUpdateForm() {
+		
+		return "users/pwd_updateform";
+	}
+	
 	@RequestMapping("/users/private/info")
 	public ModelAndView info(HttpSession session, ModelAndView mView) {
 		
