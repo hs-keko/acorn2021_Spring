@@ -21,6 +21,14 @@ public class UsersController {
 	@Autowired
 	private UsersService service;
 	
+	//회원정보 수정 폼 요청 처리
+	@RequestMapping("/users/private/updateform")
+	public ModelAndView updateForm(ModelAndView mView, HttpSession session) {
+		service.getInfo(session, mView);
+		mView.setViewName("users/updateform");
+		return mView;
+	}
+	
 	@RequestMapping("/users/private/pwd_update")
 	public ModelAndView pwdUpdate(UsersDto dto, 
 			ModelAndView mView, HttpSession session) {
@@ -30,8 +38,6 @@ public class UsersController {
 		mView.setViewName("users/pwd_update");
 		return mView;
 	}
-	
-	
 	
 	@RequestMapping("/users/private/pwd_updateform")
 	public String pwdUpdateForm() {
