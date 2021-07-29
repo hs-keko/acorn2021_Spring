@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/users/signup.jsp</title>
+<title>/views/users/signup.jsp</title>
 </head>
 <body>
 <div class="container">
