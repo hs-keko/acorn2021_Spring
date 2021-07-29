@@ -20,4 +20,10 @@
 		FROM users
 		WHERE id=#{id }
 	</select>
+	
+	<update id="pwdUpdate" parameterType="com.gura.spring05.users.dto.UsersDto">
+		UPDATE users
+		SET pwd=#{newPwd }
+		WHERE id=#{id }
+	</update>
 </mapper>
