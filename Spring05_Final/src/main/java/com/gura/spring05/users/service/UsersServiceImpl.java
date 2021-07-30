@@ -149,13 +149,6 @@ public class UsersServiceImpl implements UsersService {
 		String id=(String)session.getAttribute("id");
 		//UsersDto 에 아이디도 담아 주고
 		dto.setId(id);
-		//만일 프로필 사진을 수정하지 않았으면 
-		if(dto.getProfile().equals("empty")) {
-			/*
-			 *	MyBatis 에서 null 을 바인딩하면 오류가 나기 때문에 빈 문자열 넣기 
-			 */
-			dto.setProfile(""); //프로필 사진을 선택하지 않았다는 의미에서 null 을 대입한다.
-		}
 		//UsersDao 를 이용해서 수정 반영한다.
 		dao.update(dto);
 	}	
