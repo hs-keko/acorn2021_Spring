@@ -6,9 +6,6 @@ public class FileDto {
 	private int num;
 	private String writer;
 	private String title;
-	// 업로드되는 파일의 정보를 담을 MultipartFile type 도 필드에 선언한다.
-	// 필드명을 <input type="file" name="myFile" /> 에서 name 속성의 value 와 일치 시킨다.
-	private MultipartFile myFile;
 	//원본 파일명
 	private String orgFileName;
 	//파일 시스템에 저장된 파일명
@@ -19,6 +16,9 @@ public class FileDto {
 	//페이징 처리를 위한 필드
 	private int startRowNum;
 	private int endRowNum; 
+	// 업로드되는 파일의 정보를 담을 MultipartFile type 도 필드에 선언한다.
+	// 필드명을 <input type="file" name="myFile" /> 에서 name 속성의 value 와 일치 시킨다.
+	private MultipartFile myFile;
 	
 	public FileDto() {}
 
