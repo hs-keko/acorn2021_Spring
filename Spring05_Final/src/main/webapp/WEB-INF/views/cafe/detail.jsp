@@ -139,7 +139,7 @@
 		</tr>
 	</table>
 	<ul>
-		<li><a href="list.jsp">목록보기</a></li>
+		<li><a href="list.do">목록보기</a></li>
 		<c:if test="${dto.writer eq id }">
 			<li><a href="private/updateform.do?num=${dto.num }">수정</a></li>
 			<li><a href="private/delete.do?num=${dto.num }">삭제</a></li>
@@ -197,7 +197,7 @@
 									<button type="submit">등록</button>
 								</form>
 							<c:if test="${tmp.writer eq id }">
-								<form id="updateForm${tmp.num }" class="comment-form update-form" action="private/comment_update.jsp" method="post">
+								<form id="updateForm${tmp.num }" class="comment-form update-form" action="private/comment_update.do" method="post">
 									<input type="hidden" name="num" value="${tmp.num }" />
 									<textarea name="content">${tmp.content }</textarea>
 									<button type="submit">수정</button>
@@ -227,7 +227,7 @@
 		<button type="submit">등록</button>
 	</form>
 </div>
-<script src="${pageContext.request.contextPath}/js/gura_util.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/gura_util.js"></script>
 <script>
 	
 	//클라이언트가 로그인 했는지 여부
