@@ -197,8 +197,7 @@ public class CafeServiceImpl implements CafeService{
 
 	@Override
 	public void updateContent(CafeDto dto) {
-		// TODO Auto-generated method stub
-		
+		cafeDao.update(dto);
 	}
 
 	@Override
@@ -255,6 +254,13 @@ public class CafeServiceImpl implements CafeService{
 	@Override
 	public void deleteComment(HttpServletRequest request) {
 		int num=Integer.parseInt(request.getParameter("num"));
+		
+		CafeCommentDto dto=cafeCommentDao.getData(num);
+		String id=(String)request.getSession().getAttribute("id");
+		if(!dto.getWriter().equals(id)) {
+			throw new NotDeleteException("남의 댓글 지우면 혼난당!");
+		}
+		
 		cafeCommentDao.delete(num);
 	}
 	//댓글 수정 로직 처리
@@ -300,6 +306,16 @@ public class CafeServiceImpl implements CafeService{
 		request.setAttribute("commentList", commentList);
 		request.setAttribute("num", num); //원글의 글번호
 		request.setAttribute("pageNum", pageNum); //댓글의 페이지 번호
+	}
+
+	@Override
+	public void getData(HttpServletRequest request) {
+		//수정할 글번호
+		int num=Integer.parseInt(request.getParameter("num"));
+		//수정할 글의 정보 얻어와서 
+		CafeDto dto=cafeDao.getData(num);
+		//request 에 담아준다.
+		request.setAttribute("dto", dto);
 	}
 
 }
