@@ -139,10 +139,10 @@
 		</tr>
 	</table>
 	<ul>
-		<li><a href="list.do">목록보기</a></li>
+		<li><a href="list.jsp">목록보기</a></li>
 		<c:if test="${dto.writer eq id }">
-			<li><a href="private/updateform.do?num=${dto.num }">수정</a></li>
-			<li><a href="private/delete.do?num=${dto.num }">삭제</a></li>
+			<li><a href="updateform.do?num=${dto.num }">수정</a></li>
+			<li><a href="delete.do?num=${dto.num }">삭제</a></li>
 		</c:if>
 	</ul>
 	<!-- 댓글 목록 -->

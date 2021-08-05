@@ -17,7 +17,7 @@
 		</c:when>
 		<c:otherwise>
 			<p>
-				<a href="${pageContext.request.contextPath}/users/private/info.do">${sessionScope.id }</a> 로그인중... 
+				<a href="${pageContext.request.contextPath}/users/info.do">${sessionScope.id }</a> 로그인중... 
 				<a href="${pageContext.request.contextPath}/users/logout.do">로그아웃</a>
 			</p>
 		</c:otherwise>
@@ -27,6 +27,7 @@
 		<li><a href="${pageContext.request.contextPath}/file/list.do">자료실 목록 보기</a></li>
 		<li><a href="${pageContext.request.contextPath}/cafe/list.do">카페글 목록 보기</a></li>
 		<li><a href="${pageContext.request.contextPath}/aspect/home.do">로그인이 필요한 홈</a></li>
+		<li><a href="${pageContext.request.contextPath}/gallery/list.do">갤러리</a></li>
 	</ul>
 	
 	<h2>공지사항</h2>

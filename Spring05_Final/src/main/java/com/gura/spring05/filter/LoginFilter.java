@@ -34,13 +34,12 @@ import javax.servlet.http.HttpSession;
  */
 
 // urlPatterns 에  slash 로 시작하지 않으면 큰일 난당~~
-@WebFilter(urlPatterns = {"/users/private/*", "/file/private/*", "/cafe/private/*"})
+//@WebFilter(urlPatterns = {"/gallery/private/*","/file/private/*","/cafe/private/*"})
 public class LoginFilter implements Filter{
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
 	}
 	//필터가 동작될때 호출되는 메소드 
 	@Override

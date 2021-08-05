@@ -34,7 +34,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 	@Override
-	public void addUsers(UsersDto dto) {
+	public void addUser(UsersDto dto) {
 		//사용자가 입력한 비밀 번호를 읽어와서
 		String pwd=dto.getPwd();
 		//암호화 한 후에

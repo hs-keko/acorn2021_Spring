@@ -24,33 +24,34 @@ public class FileController {
 		return "file/list";
 	}
 	
-	@RequestMapping("/file/private/upload_form")
-	public String uploadForm() {
-		return "file/upload_form";
+	@RequestMapping("/file/upload_form")
+	public ModelAndView authUploadForm(HttpServletRequest request) {
+		
+		return new ModelAndView("file/upload_form");
 	}
 	
 	//파일 업로드 요청처리
-	@RequestMapping("/file/private/upload")
-	public ModelAndView upload(FileDto dto, ModelAndView mView, 
+	@RequestMapping("/file/upload")
+	public ModelAndView authUpload(FileDto dto, ModelAndView mView,
 			HttpServletRequest request) {
-	      
+		
 		service.saveFile(dto, mView, request);
 		mView.setViewName("file/upload");
-	      
+		
 		return mView;
 	}
 	
 	@RequestMapping("/file/download")
 	public ModelAndView download(@RequestParam int num, ModelAndView mView) {
 		service.getFileData(num, mView);
-		// 응답을 할 bean 의 이름을 설정
+		// 응답을 할 bean 의 이름을 설정 
 		mView.setViewName("fileDownView");
 		return mView;
 	}
 	
 	//파일 삭제 요청 처리
-	@RequestMapping("/file/private/delete")
-	public ModelAndView delete(@RequestParam int num,
+	@RequestMapping("/file/delete")
+	public ModelAndView authDelete(@RequestParam int num,
 			ModelAndView mView, HttpServletRequest request) {
 		
 		service.deleteFile(num, request);
@@ -58,5 +59,4 @@ public class FileController {
 		mView.setViewName("redirect:/file/list.do");
 		return mView;
 	}
-	
 }
