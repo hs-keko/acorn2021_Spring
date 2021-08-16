@@ -11,12 +11,32 @@
     <div id="app">
         <button v-on:click="getMember">회원 목록 받아오기</button>
         <button @click="getMember">회원 목록 받아오기</button>
+        <br />
+        <table>
+           <thead>
+              <tr>
+                 <th>번호</th>
+                 <th>이름</th>
+                 <th>주소</th>
+              </tr>
+           </thead>
+           <tbody>
+              <tr v-for="tmp in members" v-bind:key="tmp.num">
+                 <td>{{tmp.num}}</td>
+                 <td>{{tmp.name}}</td>
+                 <td>{{tmp.addr}}</td>
+              </tr>
+           </tbody>
+        </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/gura_util.js"></script>
     <script>
         let app=new Vue({
             el:"#app",
+            data:{
+               members:[]
+            },
             methods:{
                 getMember(){
                     //gura_util.js 에 있는 함수를 이용해서 ajax 요청하기
@@ -25,7 +45,16 @@
                         return response.json();
                     })
                     .then(function(data){
+                       //data 는 배열의 참조값 이다. 
                         console.log(data);
+                        
+                       //원본 배열에 아이템을 차례로 넣어주기 
+                        //for(let i=0; i<data.length; i++){
+                        //   app.members.push(data[i]);
+                        //}
+                        
+                       //원본배열의 참조값을 새로운 배열의 참조값으로 대체해도 화면이 업데이트 된다. 
+                        app.members=data;
                     });
                 }
             }
