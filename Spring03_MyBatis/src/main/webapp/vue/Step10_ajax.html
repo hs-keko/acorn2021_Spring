@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step10_ajax.html</title>
+</head>
+<body>
+    <h1>ajax 요청을 통해서 받아온 데이터 사용하기</h1>
+    <div id="app">
+        <button v-on:click="getMember">회원 목록 받아오기</button>
+        <button @click="getMember">회원 목록 받아오기</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/gura_util.js"></script>
+    <script>
+        let app=new Vue({
+            el:"#app",
+            methods:{
+                getMember(){
+                    //gura_util.js 에 있는 함수를 이용해서 ajax 요청하기
+                    ajaxPromise("http://localhost:8888/spring03/api/member/list.do")
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(data){
+                        console.log(data);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
